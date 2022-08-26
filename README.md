@@ -53,7 +53,7 @@
 
 项目的整体架构和工作原理如下图所示，Wio Terminal 有两类数据源，一类是通过底下的两个 Grove 接口（左侧为 I2C 接口，右侧为 GPIO/ADC/PWM 接口）连接 DHT20 传感器、PM2.5 传感器和 AQI 空气质量指数传感器，共采集环境温度、湿度、PM2.5 和 AQI 四组数据。另一类数据是通过 Wi-Fi 网络从 Web 服务器获取的 JSON 格式的天气数据，我们会将获取到的本地传感器数据，以及从 JSON 解析出来的天气数据展示在 LCD 屏幕上。
 
-![](../images/Wio-Terminal-WeatherBox-Advanced.png)
+![](./images/Wio-Terminal-WeatherBox-Advanced.png)
 
 另外，为了实现更有趣的的物联网应用，我们还将通过 Wi-Fi 无线网络，使用 MQTT 协议将 Wio Terminal 连接到 IoT 平台。为了方便国内用户使用，本项目选择了阿里云物联网平台，将传感器数据按照 IoT 平台的格式要求打包，并上报到 IoT 平台。
 
