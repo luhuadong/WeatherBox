@@ -1,7 +1,5 @@
 # WeatherBox 项目
 
-作者邮箱：luhuadong@163.com，更新日期：2022-08-26
-
 ![](./images/WeatherBox-Cloud-Show-09.jpeg)
 
 ## 项目介绍
@@ -75,7 +73,7 @@ https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
 
 然后点击 *Tools（工具） > Board（开发板）> Boards Manager…* ，打开“开发板管理器”，在搜索栏中搜索关键字 **Wio Terminal** 后，点击并安装 **Seeed SAMD Boards** 最新版本。
 
-![](../images/Arduino-IDE-Board-Manager-add-Seeed-SAMD.png)
+![](./images/Arduino-IDE-Board-Manager-add-Seeed-SAMD.png)
 
 在 *Tools（工具）> Board（开发板）* 菜单中选择“Seeed SAMD”项，选择 **Seeed Wio Terminal** 开发板。
 
@@ -108,19 +106,19 @@ https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
 
 在开始编写代码之前，请先登录 [阿里云物联网平台](https://iot.aliyun.com/)（如无账户请先创建账户），进入控制台，开通公共实例。
 
-![](../images/Aliyun-IoT-Console.png)
+![](./images/Aliyun-IoT-Console.png)
 
 然后依次创建产品（WeatherBox 天气小助手）和设备（Wio Terminal）。其中，产品的连网协议选择 Wi-Fi，数据格式选择 ICA 标准数据格式（Alink JSON）。
 
-![](../images/Aliyun-IoT-WeatherBox-01.png)
+![](./images/Aliyun-IoT-WeatherBox-01.png)
 
 下一步我们需要为产品设置具体的功能定义，这里定义了四个属性，分别对应 Wio Terminal 上报的四组传感器数据类型。即温度（Temperature）、湿度（Humidity）、PM2.5（PM25）和 空气质量指数（AQI），括号中的是属性的标识符，这个标识符在使用 MQTT 上报时需要用到，因此需要特别注意保持两端的标识符一致。另外，属性还需要设置数据类型和数据范围等参数，具体如下图所示。
 
-![](../images/Aliyun-IoT-WeatherBox-02.png)
+![](./images/Aliyun-IoT-WeatherBox-02.png)
 
 切换到“设备”页面，为“天气小助手”产品添加一个设备 wiot_01。设备创建成功后，点击“查看”进入设备详情页面。阿里云物联网平台通过设备三元组信息识别不同产品的不同设备，三元组信息包括 ProductKey、DeviceName 和 DeviceSecret，点击右上方的“查看”可以看到三元组信息，你需要保存下来以便后续填写到代码当中。由于本项目没有使用阿里云物联网平台提供的设备端 SDK，而是直接通过 MQTT 协议连接云平台，因此你还需要点击左下方的“查看”获取完整的 MQTT 连接参数，包括 clientId、username、passwd、mqttHostUrl 和 port 信息。
 
-![](../images/Aliyun-IoT-WeatherBox-03.png)
+![](./images/Aliyun-IoT-WeatherBox-03.png)
 
 至此，阿里云物联网云平台的准备工作已经完成。
 
@@ -132,7 +130,7 @@ https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json
 
 打开 Arduino IDE，点击“文件 -> 新建”，按 Ctrl + S 将文件保存为 WeatherBox-Cloud 项目。
 
-![](../images/ArduinoIDE-New-WeatherBox-Cloud.png)
+![](./images/ArduinoIDE-New-WeatherBox-Cloud.png)
 
 
 
@@ -418,21 +416,21 @@ const char *URL_ALL  = "https://restapi.amap.com/v3/weather/weatherInfo?city=cit
 
 打开阿里云 IoT Studio（https://studio.iot.aliyun.com），首先在左侧栏选择“项目管理 -> 普通项目”，点击“新建项目”创建项目，这里取名为 WeatherBox。然后在“应用开发 -> Web应用”页面，点击“新建”按钮创建一个 Web 应用，这里取名为 WeatherBox_Web。
 
-![](../images/Aliyun-IoT-Studio-New.png)
+![](./images/Aliyun-IoT-Studio-New.png)
 
 在“产品”选项卡中，关联我们前面在阿里云物联网平台创建的产品 WeatherBox 天气小助手。这样就可以读取该产品的设备数据，并将其绑定到 Web 前端的对应组件上。
 
-![](../images/Aliyun-IoT-Studio-Product.png)
+![](./images/Aliyun-IoT-Studio-Product.png)
 
 进入 Web 可视化开发界面，为 WeatherBox_Web 应用添加元素、绑定数据。一个简单的设计如下图所示。
 
-![](../images/Aliyun-IoT-Studio-Web-Full.png)
+![](./images/Aliyun-IoT-Studio-Web-Full.png)
 
 设计完成后，点击右上角的“发布”按钮即可发布 WeatherBox_Web 应用。发布成功后，你将获得一个可公网访问的 URL 链接，例如：https://a120xa0fxhfmviea.vapp.cloudhost.link/page/1004307?token=c05631b8aa553c14052dac18f365c329。当然，你也可以将 Web 应用绑定到你自己的域名，这样更便于访问。
 
 扫描下方二维码，即可访问 WeatherBox_Web 应用。
 
-![](../images/qrcode.png)
+![](./images/qrcode.png)
 
 
 
@@ -442,48 +440,19 @@ const char *URL_ALL  = "https://restapi.amap.com/v3/weather/weatherInfo?city=cit
 
 【主界面】同时显示室内外的温湿度数据、AQI 空气质量指数，以及 PM2.5 的值
 
-![](../images/WeatherBox-Cloud-Show-08.jpeg)
+![](./images/WeatherBox-Cloud-Show-08.jpeg)
 
 【详情页面】按方向键（五向开关的左右键）切换到天气预报界面，可查看未来三天的数据
 
-![](../images/WeatherBox-Cloud-Show-03.jpeg)
+![](./images/WeatherBox-Cloud-Show-03.jpeg)
 
 【Web 端】远程访问 Web 界面，随时随地了解空气质量情况
 
-![](../images/WeatherBox-Cloud-Show-06.jpeg)
+![](./images/WeatherBox-Cloud-Show-06.jpeg)
 
 
 
-## 参考
+## 维护
 
-- [MQTT-TCP连接通信](https://help.aliyun.com/document_detail/73742.htm)
-- [Paho-MQTT C接入示例](https://help.aliyun.com/document_detail/146611.html)
-- [在支持MQTT的模组上集成SDK](https://help.aliyun.com/document_detail/111903.html)
-- [Set up Wio Terminal as MQTT Display for machinechat JEDI One Sensor Data](https://forum.digikey.com/t/set-up-wio-terminal-as-mqtt-display-for-machinechat-jedi-one-sensor-data/16532)
-
-
-
-```cpp
-#if 0
-const char *ssid = "ASENSING-GUEST";
-const char *password = "88888888";
-#else
-const char *ssid = "FCTC_89";
-const char *password = "Lu15899962740";
-#endif
-
-// 440100 441802
-const char* URL_BASE = "https://restapi.amap.com/v3/weather/weatherInfo?city=440100&key=ac901c195798b1f2767987a55ee74156";
-const char* URL_ALL  = "https://restapi.amap.com/v3/weather/weatherInfo?city=440100&key=ac901c195798b1f2767987a55ee74156&extensions=all";
-
-#define ProductKey     "a1eubzkCwuz"
-#define DeviceName     "wiot_01"
-#define DeviceSecret   "56e89e401e0ed9b10e1e0e5725f362b4"
-
-#define MQTT_HOST      "a1eubzkCwuz.iot-as-mqtt.cn-shanghai.aliyuncs.com"
-#define CLIENTID       "a1eubzkCwuz.wiot_01|securemode=2,signmethod=hmacsha256,timestamp=1657691211776|"
-#define USERNAME       "wiot_01&a1eubzkCwuz"
-#define PASSWORD       "13ef429e9c6206d45ceefd3d73e4385ce5ac52de7d7c9b7c12b5d3fdfaf05f13"
-#define MQTT_PORT      1883
-```
+- 作者邮箱：luhuadong@163.com，更新日期：2022-08-26
 
